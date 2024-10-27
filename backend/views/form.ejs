@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojinha</title>
+</head>
+<body>
+
+    <% if(produto){ %>
+        <form action="/produto/update" method="POST">
+            <h2>Atualize seu produto!</h2>
+            <label for="descricao">Informe a nova descrição</label>
+            <input type="text" name="descricao" value="<%= produto.descricao %>" required>
+            
+            <label for="marca">Informe a nova marca</label>
+            <input type="text" name="marca" value="<%= produto.marca %>" required>
+    
+            <label for="valor">Informe o novo valor</label>
+            <input type="number" name="valor" value="<%= produto.valor %>" required>
+    
+            <label for="quantidade">Informe a nova quantidade</label>
+            <input type="number" name="quantidade" value="<%= produto.quantidade %>" required>
+
+            <input type="hidden" name="id" value="<%= produto.id %>"><br>
+            
+            <a href="/produto/visualizar">Voltar</a>
+            <input type="submit" value="Atualizar!">
+            
+        </form>
+   <%  } else { %>
+        <form action="/produto/criar" method="POST">
+            <h2>Cadastre seu produto!</h2>
+            <label for="descricao">Informe a descrição</label>
+            <input type="text" name="descricao" required>
+            
+            <label for="marca">Informe a marca</label>
+            <input type="text" name="marca" required>
+    
+            <label for="valor">Informe o valor</label>
+            <input type="number" name="valor" required>
+    
+            <label for="quantidade">Informe a quantidade</label>
+            <input type="number" name="quantidade" required><br>
+    
+            <a href="/produto/visualizar">Voltar</a>
+            <input type="submit" value="Enviar!">
+            
+        </form>
+    <% } %>
+    
+</body>
+</html>
