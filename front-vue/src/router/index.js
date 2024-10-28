@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Inicio from '../views/Inicio.vue';
+import App from '../App.vue';
 import NotFound from '../views/NotFound.vue';
+import Inicio from '../views/Inicio.vue';
 
 const routes = [
     {
@@ -10,18 +11,18 @@ const routes = [
         component: Inicio,
     },
     {
-        path: '/produto/criar',
-        name: 'Criar Produto',
+        path: '/produto/novo',
+        name: 'CriarProduto',
         component: () => import('../components/criar-produto/CriarProduto.vue'),
     },
     {
         path: '/produto/visualizar',
-        name: 'Visualizar Produtos',
+        name: 'VisualizarProdutos',
         component: () => import('../components/listar-produto/ListarProduto.vue'),
     },
     {
         path: '/produto/atualizar',
-        name: 'Atualizar Produto',
+        name: 'AtualizarProduto',
         component: () => import('../components/atualizar-produto/AtualizarProduto.vue'),
     },
     {

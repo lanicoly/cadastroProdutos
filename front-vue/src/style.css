@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato",Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+body {
+  background-color: #f7fcfa;
+  opacity: 0.8;
+  background-image: radial-gradient(#d9f1ed 0.6px, #f7fcfa 0.6px);
+  background-size: 10px 10px;
+}
+
+
