@@ -16,9 +16,9 @@
           </router-link>
         </div>
       </nav>
-      <main class="pl-14">
-        <div class="mx-20 py-10 flex flex-row justify-center max-w-5xl gap-14">
-          <div class="space-y-3 w-[40%]">
+      <main class="flex justify-center items-center flex-col pl-4 md:pl-14">
+        <div class="mx-20 py-10 flex md:flex-row flex-col justify-center max-w-5xl gap-14">
+          <div class="space-y-3 w-full md:w-[40%]">
             <h1 class="font-bold font-raleway text-2xl text-teal-600"><strong class="font-bold text-2xl text-orange-700">Prod</strong>Manager</h1>
             
             <p class="text-left">
@@ -35,9 +35,9 @@
           </ul>
   
         </div>
-        <aside class="bg-teal-600 px-6 rounded py-4">
-          <h1 class="text-lg font-bold text-white">Tecnologias</h1>
-          <ul class="flex flex-col gap-4 my-4 text-white h-full">
+        <aside class="bg-teal-600 px-6 rounded py-4 w-full md:w-auto">
+          <h1 class="text-lg font-bold text-white text-center">Tecnologias</h1>
+          <ul class="flex md:flex-col mobile:flex-row flex-col md:justify-start justify-center items-center gap-4 my-4 text-white h-full">
             <li>Node.JS <img src="/nodejs.svg" alt="" width="70"></li>
             <li>Express.JS <img src="/expressjs.svg" width="30" alt=""></li>
             <li>Vue.JS <img src="/vuejs.svg" width="40" alt=""></li>
@@ -45,6 +45,17 @@
           </ul>
         </aside>
       </div>
+      <div class="bg-white p-4 rounded-lg shadow-md text-center flex flex-col md:flex-row gap-4 mr-4 ml-10">
+  <img src="/lais2024.png" alt="Laís Nicoly" class="w-24 h-24 rounded-full mb-2 mx-auto" />
+  <div class="flex flex-col justify-center items-start text-left">
+    <h4 class="text-teal-900 font-semibold">Aluna</h4>
+    <h4 class="text-teal-900">Laís Nicoly</h4>
+    <p>
+      Programação Web II - TADS IV - Prof. Ronaldo
+    </p>
+  </div>
+</div>
+
       </main>
   </template>
   
