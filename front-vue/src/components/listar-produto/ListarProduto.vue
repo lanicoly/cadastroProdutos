@@ -105,7 +105,7 @@
           <!-- card -->
         </div>
 
-                <!-- Modal de Exclusão -->
+          <!-- Modal de Exclusão -->
           <div v-if="isModalOpen" class="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 z-20">
           <form @submit.prevent="confirmDelete"
             class="container flex flex-col gap-2 w-full p-[10px] h-auto rounded-[15px] bg-white mx-5 max-w-[400px] justify-center items-center">
