@@ -17,11 +17,11 @@ const routes = [
     },
     {
         path: '/produto/visualizar',
-        name: 'VisualizarProdutos',
+        name: 'ListarProdutos',
         component: () => import('../components/listar-produto/ListarProduto.vue'),
     },
     {
-        path: '/produto/atualizar',
+        path: '/produto/editar/:id',
         name: 'AtualizarProduto',
         component: () => import('../components/atualizar-produto/AtualizarProduto.vue'),
     },

@@ -24,29 +24,29 @@
           </div>
           
           
-          <form action="/produto/criar" method="POST" class="flex flex-col gap-3 bg-white rounded-lg p-3 shadow-shape">
+          <form @submit.prevent="createProdutos" class="flex flex-col gap-3 bg-white rounded-lg p-3 shadow-shape mx-2">
             <h2 class="font-semibold text-xl w-full text-center text-teal-900">Criar novo produto</h2>
 
             <fieldset class="flex flex-col">
               <label for="descricao">Informe a descrição</label>
-              <input class="bg-gray-100 border-solid border-2 rounded-sm placeholder-slate-500 text-xs py-1.5 px-2" type="text" name="descricao" placeholder="Descrição do produto..." required>
+              <input v-model="newProduto.descricao" class="bg-gray-100 border-solid border-2 rounded-sm placeholder-slate-500 text-xs py-1.5 px-2" type="text" name="descricao" placeholder="Descrição do produto..." required>
             </fieldset>
             
             <fieldset class="flex flex-col">
               <label for="marca">Informe a marca</label>
-              <input class="bg-gray-100 border-solid border-2 rounded-sm placeholder-slate-500 text-xs py-1.5 px-2" type="text" name="marca" placeholder="Marca do produto..." required>
+              <input v-model="newProduto.marca" class="bg-gray-100 border-solid border-2 rounded-sm placeholder-slate-500 text-xs py-1.5 px-2" type="text" name="marca" placeholder="Marca do produto..." required>
             </fieldset>
     
-            <div class="flex gap-3 justify-between">
+            <div class="flex gap-3 justify-between flex-wrap min-w-[230px]">
 
               <fieldset class="flex flex-col flex-1">
                 <label for="valor">Informe o valor</label>
-                <input class="bg-gray-100 border-solid border-2 rounded-sm placeholder-slate-500 text-xs py-1.5 px-2" type="number" name="valor" placeholder="R$0.00" required>
+                <input v-model="newProduto.valor" class="bg-gray-100 border-solid border-2 rounded-sm placeholder-slate-500 text-xs py-1.5 px-2" type="number" name="valor" placeholder="R$0.00" required>
               </fieldset>
               
               <fieldset class="flex flex-col flex-1">
                 <label for="quantidade">Informe a quantidade</label>
-                <input class="bg-gray-100 border-solid border-2 rounded-sm text-xs py-1.5 px-2" type="number" name="quantidade" value="0" required><br>
+                <input v-model="newProduto.quantidade" class="bg-gray-100 border-solid border-2 rounded-sm text-xs py-1.5 px-2" type="number" name="quantidade" value="0" required><br>
               </fieldset>
             </div>
             
@@ -61,6 +61,7 @@
 
 <script>
 import { House, CirclePlus, LayoutList } from 'lucide-vue-next';
+import api from '../../services/api';
 
 export default {
   name: 'CriarProduto',
@@ -69,5 +70,69 @@ export default {
     CirclePlus,
     LayoutList,
   },
+  data() {
+    return {
+    produtos: [],
+    newProduto: {
+    id: '',
+    descricao: '',
+    marca: '',
+    valor: '',
+    quantidade: '',
+    },
+    editProdutoForm: {
+      id: '',
+      descricao: '',
+      marca: '',
+      valor: '',
+      quantidade: '',
+    },
+    };
+  },
+methods: {
+async fetchProdutos() {
+try {
+const response = await api.get('/produto/visualizar');
+this.produtos = response.data;
+} catch (error) {
+console.error('Erro ao buscar produtos:', error);
+}
+},
+async createProdutos() {
+try {
+await api.post('/produto/criar', this.newProduto);
+this.newProdutos = { id: '', descricao: '', marca: '', valor: '', quantidade: '' };
+this.$router.push('/produto/visualizar');
+this.fetchProdutos();
+
+} catch (error) {
+console.error('Erro ao criar produto:', error);
+}
+},
+updateProduto(produto) {
+this.editProdutoForm = { ...produto };
+},
+async updateProduto() {
+try {
+await api.put(`/produto/editar/${this.editProdutoForm.id}`, this.editProdutoForm);
+this.editProdutoForm = { id: '', descricao: '', marca: '', valor: '', quantidade: '' };
+this.fetchProdutos();
+} catch (error) {
+console.error('Erro ao atualizar produto:', error);
+}
+},
+async deleteProduto(id) {
+  try {
+    await api.delete(`/produto/excluir/${id}`);
+    this.fetchProdutos();
+    } catch (error) {
+    console.error('Erro ao deletar produto:', error);
+  }
+},
+},
+created() {
+this.fetchProdutos();
+  },
 };
+
 </script>

@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express()
-const produtos = require("./controller/controllerProduto")
+const produto = require("./controller/controllerProduto")
 const connection = require('./database/database')
-const Produto = require("./models/produto")
+const bodyParser = require("body-parser")
+const cors = require("cors")
 
 connection.authenticate()
 .then(()=>{
@@ -19,12 +20,18 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static("public"));
 
+app.use(bodyParser.json());
+
+app.use(cors());
+let produtos = []
+
+
 app.get("/", (req,res)=>{
     console.log("Boas vindas à tela inicial!")
     res.render("index")
 })
 
-app.use("/", produtos)
+app.use("/", produto)
 
 app.listen(3333,(err)=>{
     if (err) {

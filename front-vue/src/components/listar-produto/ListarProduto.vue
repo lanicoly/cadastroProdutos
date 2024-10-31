@@ -27,87 +27,34 @@
         <h2 class="font-semibold text-xl w-full text-center text-teal-900">Produtos Cadastrados</h2>
 
         <div class="flex flex-wrap max-w-[820px] justify-center gap-4 mx-2">
+
           <!-- card -->
-          <div class="space-y-2 w-48 bg-white rounded-lg p-3 shadow-shape">
-            <h2 class="text-lg text-teal-900 font-semibold">Descrição</h2>
+          <div class="space-y-2 w-48 bg-white rounded-lg p-3 shadow-shape" v-for="produto in produtos"
+            :key="produto.id">
+            <h2 class="text-lg text-teal-900 font-semibold">{{ produto.descricao }}</h2>
             <div class="bg-teal-900 h-px w-[64px]"></div>
-            <p>Marca: <strong class="text-teal-600 font-semibold">marca</strong></p>
-            <p>Valor: <strong class="text-teal-600 font-semibold">R$</strong></p>
-            <p>Quantidade: <strong class="text-teal-600 font-semibold">0</strong></p>
+            <p>Marca: <strong class="text-teal-600 font-semibold">{{ produto.marca }}</strong></p>
+            <p>Valor: <strong class="text-teal-600 font-semibold">R${{ produto.valor }}</strong></p>
+            <p>Quantidade: <strong class="text-teal-600 font-semibold">{{ produto.quantidade }}</strong></p>
             <div class="bg-teal-900 h-px w-[64px]"></div>
             <div class="flex flex-col gap-2">
-              <a class="bg-teal-600 hover:bg-teal-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center"
-                href="/produto/atualizar">
+              <button @click="editProduto(produto)"
+                class="bg-teal-600 hover:bg-teal-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center"
+                >
                 <Pencil class="w-3 h-3 text-white" />Editar
-              </a>
-              <button @click="openModal" class="bg-orange-600 hover:bg-orange-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
-                <X class="w-3 h-3 text-white" />Excluir
               </button>
-            </div>
-          </div>
-          <!-- card -->
-          <!-- card -->
-          <div class="space-y-2 w-48 bg-white rounded-lg p-3 shadow-shape">
-            <h2 class="text-lg text-teal-900 font-semibold">Descrição</h2>
-            <div class="bg-teal-900 h-px w-[64px]"></div>
-            <p>Marca: <strong class="text-teal-600 font-semibold">marca</strong></p>
-            <p>Valor: <strong class="text-teal-600 font-semibold">R$</strong></p>
-            <p>Quantidade: <strong class="text-teal-600 font-semibold">0</strong></p>
-            <div class="bg-teal-900 h-px w-[64px]"></div>
-            <div class="flex flex-col gap-2">
-              <a class="bg-teal-600 hover:bg-teal-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center"
-                href="/produto/atualizar">
-                <Pencil class="w-3 h-3 text-white" />Editar
-              </a>
-              <button @click="openModal" class="bg-orange-600 hover:bg-orange-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
-                <X class="w-3 h-3 text-white" />Excluir
-              </button>
-            </div>
-          </div>
-          <!-- card -->
-          <!-- card -->
-          <div class="space-y-2 w-48 bg-white rounded-lg p-3 shadow-shape">
-            <h2 class="text-lg text-teal-900 font-semibold">Descrição</h2>
-            <div class="bg-teal-900 h-px w-[64px]"></div>
-            <p>Marca: <strong class="text-teal-600 font-semibold">marca</strong></p>
-            <p>Valor: <strong class="text-teal-600 font-semibold">R$</strong></p>
-            <p>Quantidade: <strong class="text-teal-600 font-semibold">0</strong></p>
-            <div class="bg-teal-900 h-px w-[64px]"></div>
-            <div class="flex flex-col gap-2">
-              <a class="bg-teal-600 hover:bg-teal-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center"
-                href="/produto/atualizar">
-                <Pencil class="w-3 h-3 text-white" />Editar
-              </a>
-              <button @click="openModal" class="bg-orange-600 hover:bg-orange-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
-                <X class="w-3 h-3 text-white" />Excluir
-              </button>
-            </div>
-          </div>
-          <!-- card -->
-          <!-- card -->
-          <div class="space-y-2 w-48 bg-white rounded-lg p-3 shadow-shape">
-            <h2 class="text-lg text-teal-900 font-semibold">Descrição</h2>
-            <div class="bg-teal-900 h-px w-[64px]"></div>
-            <p>Marca: <strong class="text-teal-600 font-semibold">marca</strong></p>
-            <p>Valor: <strong class="text-teal-600 font-semibold">R$</strong></p>
-            <p>Quantidade: <strong class="text-teal-600 font-semibold">0</strong></p>
-            <div class="bg-teal-900 h-px w-[64px]"></div>
-            <div class="flex flex-col gap-2">
-              <a class="bg-teal-600 hover:bg-teal-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center"
-                href="/produto/atualizar">
-                <Pencil class="w-3 h-3 text-white" />Editar
-              </a>
-              <button @click="openModal" class="bg-orange-600 hover:bg-orange-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
-                <X class="w-3 h-3 text-white" />Excluir
-              </button>
+              <button @click="openModal(produto)"
+          class="bg-orange-600 hover:bg-orange-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
+    <X class="w-3 h-3 text-white" />Excluir
+  </button>
             </div>
           </div>
           <!-- card -->
         </div>
 
-          <!-- Modal de Exclusão -->
-          <div v-if="isModalOpen" class="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 z-20">
-          <form @submit.prevent="confirmDelete"
+        <!-- Modal de Exclusão -->
+        <div v-if="isModalOpen" class="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 z-20">
+          <form
             class="container flex flex-col gap-2 w-full p-[10px] h-auto rounded-[15px] bg-white mx-5 max-w-[400px] justify-center items-center">
             <div class="flex justify-center mx-auto w-full max-w-[90%]">
               <p class="text-teal-900 text-center text-[20px] font-semibold ml-[10px] w-[85%] h-max">
@@ -128,7 +75,7 @@
                 class="px-4 py-2 border-[3px] rounded-xl font-semibold text-sm flex gap-[4px] justify-center items-center bg-slate-500 text-[#FFF]">
                 CANCELAR
               </button>
-              <button type="submit"
+              <button @click="confirmDelete(produto)"
                 class="px-4 py-2 border-[3px] rounded-xl font-semibold text-sm flex gap-[4px] justify-center items-center bg-red-700 text-[#FFF]">
                 EXCLUIR
               </button>
@@ -143,6 +90,7 @@
 
 <script>
 import { House, CirclePlus, LayoutList, Pencil, X, TriangleAlert } from 'lucide-vue-next';
+import api from '../../services/api';
 
 export default {
   name: 'ListarProduto',
@@ -157,19 +105,47 @@ export default {
   data() {
     return {
       isModalOpen: false,
+      produtos: [],
+      editProdutoForm: {
+        id: '',
+        descricao: '',
+        marca: '',
+        valor: '',
+        quantidade: '',
+      },
     };
   },
   methods: {
-    openModal() {
+    openModal(produto) {
       this.isModalOpen = true;
+      this.editProdutoForm.id = produto.id;
     },
     closeModal() {
       this.isModalOpen = false;
     },
+    async fetchProdutos() {
+      try {
+        const response = await api.get('/produto/visualizar');
+        this.produtos = response.data;
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+      }
+    },
+    async deleteProduto(id) {
+      try {
+        await api.delete(`/produto/excluir/${id}`);
+        this.fetchProdutos();
+      } catch (error) {
+        console.error('Erro ao deletar produto:', error);
+      }
+    },
     confirmDelete() {
-      console.log('Produto excluído');
+      this.deleteProduto(this.editProdutoForm.id); 
       this.closeModal();
-    }
+    },
+  },
+  created() {
+    this.fetchProdutos();
   },
 };
 </script>
