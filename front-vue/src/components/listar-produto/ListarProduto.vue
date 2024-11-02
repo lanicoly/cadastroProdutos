@@ -38,15 +38,14 @@
             <p>Quantidade: <strong class="text-teal-600 font-semibold">{{ produto.quantidade }}</strong></p>
             <div class="bg-teal-900 h-px w-[64px]"></div>
             <div class="flex flex-col gap-2">
-              <button @click="editProduto(produto)"
-                class="bg-teal-600 hover:bg-teal-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center"
-                >
+              <button @click="editProduto(produto, produto.id)"
+                class="bg-teal-600 hover:bg-teal-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
                 <Pencil class="w-3 h-3 text-white" />Editar
               </button>
               <button @click="openModal(produto)"
-          class="bg-orange-600 hover:bg-orange-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
-    <X class="w-3 h-3 text-white" />Excluir
-  </button>
+                class="bg-orange-600 hover:bg-orange-700 transition-all delay-75 px-3 py-1 rounded-lg text-white font-semibold flex-1 text-center text-sm flex gap-1 justify-center items-center">
+                <X class="w-3 h-3 text-white" />Excluir
+              </button>
             </div>
           </div>
           <!-- card -->
@@ -75,13 +74,14 @@
                 class="px-4 py-2 border-[3px] rounded-xl font-semibold text-sm flex gap-[4px] justify-center items-center bg-slate-500 text-[#FFF]">
                 CANCELAR
               </button>
-              <button @click="confirmDelete(produto)"
+              <button @click="confirmDeleteTrue()"
                 class="px-4 py-2 border-[3px] rounded-xl font-semibold text-sm flex gap-[4px] justify-center items-center bg-red-700 text-[#FFF]">
                 EXCLUIR
               </button>
             </div>
           </form>
         </div>
+        <!-- Modal de Exclusão -->
 
       </div>
     </div>
@@ -131,6 +131,10 @@ export default {
         console.error('Erro ao buscar produtos:', error);
       }
     },
+    editProduto(produto, id) {
+      this.editProdutoForm = { ...produto };
+      this.$router.push(`/produto/editar/${id}`);
+    },
     async deleteProduto(id) {
       try {
         await api.delete(`/produto/excluir/${id}`);
@@ -139,10 +143,11 @@ export default {
         console.error('Erro ao deletar produto:', error);
       }
     },
-    confirmDelete() {
-      this.deleteProduto(this.editProdutoForm.id); 
+    confirmDeleteTrue() {
+      this.deleteProduto(this.editProdutoForm.id);
       this.closeModal();
     },
+
   },
   created() {
     this.fetchProdutos();

@@ -23,8 +23,6 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 app.use(cors());
-let produtos = []
-
 
 app.get("/", (req,res)=>{
     console.log("Boas vindas à tela inicial!")

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Lato",Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Lato", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 body {

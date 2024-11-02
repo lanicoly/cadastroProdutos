@@ -1,12 +1,6 @@
 const express = require("express");
 const Produto = require('../models/produto');
-const { where } = require("sequelize");
 const router = express.Router()
-
-// router.get("/produto/novo", (req, res)=>{
-//     console.log("Página para criar novo produto");
-//     res.render('form', {produto:null})
-// })
 
 // C do CRUD
 router.post('/produto/criar',  (req, res)=>{
@@ -35,14 +29,6 @@ router.get('/produto/visualizar', async (req, res) =>{
     return res.status(200).json(produtos)
 })
 
-// router.get('/produto/editar/:id', async (req,res)=> {
-//     var id = req.params.id;
-//     produtos = await Produto.findByPk(id)
-//     console.log("Página para atualizar um produto");
-//     return res.status(200).json(produtos)
-//     })
-
-
 // U do CRUD
 router.put('/produto/editar/:id', async (req, res) => {
     try {
@@ -68,21 +54,20 @@ router.put('/produto/editar/:id', async (req, res) => {
 });
 
 //D do CRUD
-router.get('/produto/excluir/:id', (req,res)=> {
+router.delete('/produto/excluir/:id', (req,res)=> {
     var id = req.params.id;
     Produto.destroy({
         where: {id: id}
     })
     .then(()=>{
-        console.log("Objeto destruído!")
-        console.log("Página para excluir produto");
+        console.log("Objeto destruído!");
+        return res.status(200).json({ message: "Produto destruido com sucesso!" });
     })
     .catch((err)=>{
-        console.log("Erro: "+err)
+        console.log("Erro: "+err);
+        return res.status(500).json({ err: err.message });
     })
-    .finally(()=>{
-        res.redirect('/produto/visualizar');
-    })
+
 })
 
 module.exports = router
